@@ -1,0 +1,62 @@
+{
+  "jack": {
+    "street": "428 Ross Rd",
+    "city": "Columbus",
+    "state": "OH",
+    "zipcode": "43213"
+  },
+  "jill": {
+    "street": "234 Other St",
+    "city": "Townville",
+    "state": "OH",
+    "zipcode": "32145"
+  },
+  "bob": {
+    "street": "1 Main",
+    "city": "Columbus",
+    "state": "OH",
+    "zipcode": "43000"
+  },
+  "Mark": {
+    "street": "1 Main",
+    "city": "Columbus",
+    "state": "OH",
+    "zipcode": "43000"
+  },
+  "Nancy": {
+    "street": "1 Main",
+    "city": "Columbus",
+    "state": "OH",
+    "zipcode": "43000"
+  },
+  "Nigan Ramon": {
+    "street": "223 ",
+    "city": "Atlanta",
+    "state": "GA",
+    "zipcode": "30324"
+  },
+  "Sam Dexter": {
+    "street": "223 ",
+    "city": "Atlanta",
+    "state": "GA",
+    "zipcode": "30324"
+  },
+  "Allan34": {
+    "street": "223 ",
+    "city": "Atlanta",
+    "state": "GA",
+    "zipcode": "30324"
+  },
+  "Simonp4": {
+    "street": "223 ",
+    "city": "Atlanta",
+    "state": "GA",
+    "zipcode": "30324"
+  },
+  "Rick Grimes": {
+    "street": "223 ",
+    "city": "Atlanta",
+    "state": "GA",
+    "zipcode": "30324"
+  }
+}
