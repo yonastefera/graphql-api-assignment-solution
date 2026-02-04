@@ -5,7 +5,7 @@
 
 ## Solution Briefing
 
-This code checkin all requested enhancements, bug fixes, and test coverage for the GraphQL assignment using GraphQL Yoga and Envelop. The solution focuses on keeping resolver logic simple while handling cross-cutting concerns (headers, logging, request metadata) centrally via Envelop plugins.
+This code check-in implements all requested enhancements, bug fixes, and test coverage for the GraphQL assignment using GraphQL Yoga and Envelop. The solution keeps resolver logic focused on business behavior while handling cross-cutting concerns (request headers, logging, and response metadata) centrally via Envelop plugins.
 
 ## Key Changes
 
