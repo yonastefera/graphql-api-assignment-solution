@@ -1,75 +1,48 @@
-## Purpose
+## How to Run
+`npm install`
+`npm test`
+`npm run dev`
 
-You're tasked with 7 tickets this sprint. 5 of the tickets are enhancements, one is a bug and the last ticket to write unit tests
+## Solution Briefing
 
-> Ticket 1:
+This code checkin all requested enhancements, bug fixes, and test coverage for the GraphQL assignment using GraphQL Yoga and Envelop. The solution focuses on keeping resolver logic simple while handling cross-cutting concerns (headers, logging, request metadata) centrally via Envelop plugins.
 
-- Update the address schema to include a "state" field.
-  - Update typescript types to mirror schema types
+## Key Changes
 
-> Ticket 2:
+> Schema & Types:
 
-- Create a mutation that accepts a username and address and saves it to the addresses.json file.
-  - Follow the same pattern already in place in the "address" resolver
-  - Add types where appropriate (graph and ts)
-  - This is a create, not an update or delete. Don't smash existing records.
-  - You can use any library or tool to modify the addresses.json file. If you use a library and it has a "get" or "read" function update the "address" resolver to use the same toolset to retrieve records.
+- Added `state` to the `Address` schema and aligned TypeScript types accordingly.
+ 
+> Mutation:
 
-> Ticket 3:
+- Implemented `createAddress` mutation to persist new address records to `addresses.json`.
+- Enforces create-only behavior (no overwrite of existing records).
 
-- Update the code to make sure the required header 'client' is set in every request.
-  - If the client header is missing, reject the request
+> Request Validation:
 
-> Ticket 4 (Bug):
+- Added Envelop plugin to enforce required `client` header on all requests.
 
-- Resolve an issue with requestId not showing up in every log statement. A new requestId should be generated before it hits the resolver and it should be set in the logger, so that the requestId shows up in every log statement on console.
-- hint: <https://the-guild.dev/graphql/envelop/docs/plugins/lifecycle>
+> Logging:
 
-> Ticket 5:
+- Fixed requestId lifecycle issue so it is generated before resolvers execute.
+- Updated logger to include both `requestId` and `client` in every log entry.
 
-- Update the logger to log the **required** header 'client' in every log
-  - follow the requestId pattern to add client header to the logs.
+> Response Metadata:
 
-> Ticket 6:
+- Appended requestId to all GraphQL responses under a top-level metadata field using the Envelop execution lifecycle.
 
-- Append the requestId from the context object to the responses.
+> Testing:
 
-  - example:
+- Added unit/integration tests covering
 
-    ```
-    {
-      "data": {
-        "address": {
-          "city": "Sometown",
-          "street": "123 Street St.",
-          "zipcode": "43215"
-        }
-      },
-      "metadata":{
-        "requestId":"123129387129831"
-      }
-    }
-    ```
+  - Required client header enforcement
+  - createAddress mutation behavior (success + duplicate rejection)
+  - Presence of metadata.requestId in responses
+- File system interactions are safely mocked to avoid modifying real data.
 
-  - hint: <https://the-guild.dev/graphql/envelop/docs/plugins/lifecycle#onexecutedone>
 
-> Ticket 7:
+### Design notes
+- Envelop plugins are used to centralize request-level concerns (headers, logging, response shaping) instead of duplicating logic in resolvers.
+- Resolver implementations remain focused solely on business logic.
+- Tests execute against an in-memory Yoga server to closely match real runtime behavior.
 
-- After making the updates write/update unit tests to make sure your code is working as intended
-
-### Things to think about
-
-- How can you ensure graph schema types and typescript types match?
-- How can you return a consistent user friendly error message for all resolvers?
-- How would you nest this address object inside a larger schema object containing other elements specific to a user?
-- How can you make sure you are not duplicating an implementation in every resolver? Tip: read about envelop in the resources below
-
-### Resources
-
-- GraphQL Yoga (v5) documentation: <https://the-guild.dev/graphql/yoga-server/docs>
-- Envelop (plugin) documentation: <https://the-guild.dev/graphql/envelop/docs>
-- Typescript: <https://www.typescriptlang.org/docs/>
-
-### Expectations and notes
-
-We're not expecting something that's highly polished and production ready. The purpose here is to see if you can meet the goals outlined and to evaluate the choices you've made to achieve those goals. To that end, feel free to use AI to **explain** sections of code to you, but don't use it to actually write the code. It's important that you understand what's going on in the code and can explain your choices.
